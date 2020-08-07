@@ -1,23 +1,30 @@
 <template>
-  <div>
-    <form @submit.prevent="handleSubmit">
-      <label>Enter your index:</label>
-      <input
-        v-model="inputValue"
-        onfocus="if(this.value == 'Enter a value') { this.value = ''; }"
-      />
-      <button type="submit">Submit</button>
-    </form>
+  <div class="box">
+    <div class="columns is-centered">
+      <form @submit.prevent="handleSubmit">
+        <div class="field has-addons ">
+          <div class="control">
+            <input
+              v-model="inputValue"
+              onfocus="if(this.value == 'Enter a value') { this.value = ''; }"
+              class="input is-primary"
+              type="text"
+            />
+          </div>
+          <div class="control">
+            <button class="button is-primary" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
 
-    <!-- <ul> -->
     <ul v-if="seenIndexes && seenIndexes.length">
       <h3>Indexes I have seen:</h3>
 
-      <p>{{ seenIndexes.map(x => x.number).join(", ") }}</p>
+      <p>{{ seenIndexes.map((x) => x.number).join(", ") }}</p>
     </ul>
 
     <ul>
-      <!-- <ul v-if="values && values.length"> -->
       <h3>Calculated Values:</h3>
 
       <li v-for="(value, name) in values" :key="name">
@@ -31,12 +38,13 @@
 import axios from "axios";
 
 export default {
+  name: "FibInput",
   data() {
     return {
       seenIndexes: [],
       values: {},
       index: "",
-      inputValue: "Enter a value"
+      inputValue: "Enter a value",
     };
   },
 
@@ -56,13 +64,13 @@ export default {
   methods: {
     async handleSubmit() {
       await axios.post("/api/values", {
-        index: this.inputValue
+        index: this.inputValue,
       });
 
       this.index = "";
 
       window.location.reload();
-    }
-  }
+    },
+  },
 };
 </script>

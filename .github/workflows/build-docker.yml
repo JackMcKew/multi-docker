@@ -11,10 +11,10 @@ jobs:
       - name: Checkout Latest Repo
         uses: actions/checkout@master
 
-      - name: Build Dev Docker Image
+      - name: Build Dev Docker Image - Client
         run: docker build -t jackmckew/multi-docker-dev -f ./client/Dockerfile.dev ./client
 
-      - name: Run Test Suite
+      - name: Run Test Suite - Client
         run: docker run -e CI=true jackmckew/multi-docker-dev npm run test:unit
 
       # Deploy to Dockerhub
