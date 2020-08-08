@@ -1,6 +1,7 @@
 {
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [{
+            "memory": 128,
             "name": "client",
             "image": "jackmckew/multi-docker-client",
             "hostname": "client",

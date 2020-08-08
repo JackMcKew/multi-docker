@@ -69,5 +69,6 @@ jobs:
           application_name: mulit-docker
           environment_name: MulitDocker-env
           version_label: 12345
+          version_description: ${{github.SHA}}
           region: ap-southeast-2
           deployment_package: deploy.zip
