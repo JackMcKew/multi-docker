@@ -2,7 +2,7 @@
   <div class="box">
     <div class="columns is-centered">
       <form @submit.prevent="handleSubmit">
-        <div class="field has-addons ">
+        <div class="field has-addons">
           <div class="control">
             <input
               v-model="inputValue"
@@ -44,7 +44,7 @@ export default {
       seenIndexes: [],
       values: {},
       index: "",
-      inputValue: "Enter a value",
+      inputValue: "Enter a value"
     };
   },
 
@@ -64,13 +64,13 @@ export default {
   methods: {
     async handleSubmit() {
       await axios.post("/api/values", {
-        index: this.inputValue,
+        index: this.inputValue
       });
 
       this.index = "";
 
       window.location.reload();
-    },
-  },
+    }
+  }
 };
 </script>

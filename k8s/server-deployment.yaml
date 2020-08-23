@@ -6,8 +6,8 @@ spec:
   selector:
     component: server
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 5000
+      targetPort: 5000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +27,7 @@ spec:
         - name: server
           image: jackmckew/multi-docker-server
           ports:
-            - containerPort: 8080
+            - containerPort: 5000
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
