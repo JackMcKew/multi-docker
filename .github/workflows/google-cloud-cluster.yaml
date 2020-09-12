@@ -14,11 +14,16 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - run: gcloud info
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker build -t jackmckew/vue-test -f ./client/Dockerfile.dev ./client
-      - run: docker run -e CI=true jackmckew/vue-test npm test
+      - name: Build Containers and Run Tests
+        run: |
+          docker build -t jackmckew/vue-test -f ./client/Dockerfile.dev ./client
+          docker run -e CI=true jackmckew/vue-test npm test
+      - name: Deploy to Docker Hub & Update Kubernetes Config
+        run: |
+          chmod +x ./scripts/deploy.sh
+          ./scripts/deploy.sh
