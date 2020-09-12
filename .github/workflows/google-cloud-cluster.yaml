@@ -26,6 +26,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build Containers and Run Tests
         run: |
           docker build -t jackmckew/vue-test -f ./client/Dockerfile.dev ./client
