@@ -1,6 +1,8 @@
 name: Deploy to Google Cloud Kubernetes Engine
 
-on: push
+on:
+  release:
+    types: [published]
 
 jobs:
   deploy:
