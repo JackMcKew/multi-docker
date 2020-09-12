@@ -2,6 +2,8 @@ docker build -t jackmckew/multi-docker-client:latest -t jackmckew/multi-docker-c
 docker build -t jackmckew/multi-docker-server:latest -t jackmckew/multi-docker-server:${GITHUB_SHA} -f ./server/Dockerfile ./server
 docker build -t jackmckew/multi-docker-worker:latest -t jackmckew/multi-docker-worker:${GITHUB_SHA} -f ./worker/Dockerfile ./worker
 
+docker login -u jackmckew
+
 docker push jackmckew/multi-docker-client:latest
 docker push jackmckew/multi-docker-server:latest
 docker push jackmckew/multi-docker-worker:latest
